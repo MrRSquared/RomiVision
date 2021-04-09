@@ -29,7 +29,7 @@ public class RobotContainer {
   private final Joystick m_controller = new Joystick(0);
  
   // Create SmartDashboard chooser for autonomous routines
-  private final SendableChooser<Command> m_chooser = new SendableChooser<>();
+  //private final SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -51,11 +51,11 @@ public class RobotContainer {
      * All of this logic could have been rolled into the command itself, but I wanted to outline
      * how to do it independently.
     */
-    m_chooser.setDefaultOption("Turn To 90", new InstantCommand(
+    /**m_chooser.setDefaultOption("Turn To 90", new InstantCommand(
       () -> m_romiDrivetrain.resetEncoders())
       .andThen(new TurnToAngle(90, m_romiDrivetrain))
       .andThen(new InstantCommand(() -> m_romiDrivetrain.arcadeDrive(0, 0)))
-    );
+    );*/
 
   }
 
@@ -66,6 +66,12 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_chooser.getSelected();
+    //return m_chooser.getSelected();
+    return new InstantCommand(
+      () -> m_romiDrivetrain.resetEncoders())
+      .andThen(new TurnToAngle(90, m_romiDrivetrain))
+      .andThen(new InstantCommand(() -> m_romiDrivetrain.arcadeDrive(0, 0))
+    );
+
   }
 }
