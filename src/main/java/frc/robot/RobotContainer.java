@@ -27,6 +27,7 @@ public class RobotContainer {
 
   // Assumes a gamepad plugged into channnel 0
   private final Joystick m_controller = new Joystick(0);
+  private final TurnToAngle m_turnToAngle;
  
   // Create SmartDashboard chooser for autonomous routines
   //private final SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -36,6 +37,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    m_turnToAngle = new TurnToAngle(90, m_romiDrivetrain);
   }
 
   /**
@@ -69,7 +71,7 @@ public class RobotContainer {
     //return m_chooser.getSelected();
     return new InstantCommand(
       () -> m_romiDrivetrain.resetEncoders())
-      .andThen(new TurnToAngle(90, m_romiDrivetrain))
+      .andThen(m_turnToAngle)
       .andThen(new InstantCommand(() -> m_romiDrivetrain.arcadeDrive(0, 0))
     );
 
