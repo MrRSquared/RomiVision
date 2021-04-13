@@ -73,8 +73,11 @@ public class RobotContainer {
       new InstantCommand(() -> m_romiDrivetrain.arcadeDrive(0, 0))
     );
     JoystickButton exampleButton = new JoystickButton(m_controller, 1); // Creates a new JoystickButton object for button 1 on exampleStick
+    JoystickButton exampleButton2 = new JoystickButton(m_controller, 2);
     exampleButton
       .whenPressed(m_auto);
+    exampleButton2
+      .cancelWhenActive(m_auto);
 
   }
 
