@@ -17,7 +17,8 @@ public final class Constants {
     public static final double kP = 0.03;
     public static final double kI = 0.0009;
     public static final double kD = 0.0001;
-    public static final double kTurnTolleranceDeg = 30;
+    //Use Speed or distance tollerance constant, not both.
+    public static final double kTurnTolleranceDeg = 5;
     public static final double kTurnTolleranceDegPerS = 0;
     public static final double ksVolts = 0.929;
     public static final double kvVoltSecondsPerMeter = 6.33;
