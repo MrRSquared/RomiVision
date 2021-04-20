@@ -16,6 +16,7 @@ public class TurnToAngle extends PIDCommand {
   /** Creates a new TurnToAngle. */
   public TurnToAngle(double targetAngleDegrees, RomiDrivetrain drive) {
     super(
+      
         // The controller that the command will use
         new PIDController(DriveConstants.kP, DriveConstants.kI, DriveConstants.kD),
        // Close loop on heading
@@ -26,10 +27,11 @@ public class TurnToAngle extends PIDCommand {
        output -> drive.tankDriveVolts(-output, output),
        // Require the drive
        drive);
-       //Set the controller to be continuous since it is a gyro.
-       getController().enableContinuousInput(-180, 180);
+        //Set the controller to be continuous since it is a gyro.
+        getController().enableContinuousInput(-180, 180);
         // setpoint before it is considered as having reached the reference
        getController().setTolerance(DriveConstants.kTurnTolleranceDeg, DriveConstants.kTurnTolleranceDegPerS);
+      
   } 
 
   // Returns true when the command should end.
