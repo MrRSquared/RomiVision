@@ -14,9 +14,9 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants{
-    public static final double kP = 0.03;
-    public static final double kI = 0.0009;
-    public static final double kD = 0.0001;
+    public static final double kP = 0.085;
+    public static final double kI = 0.0;
+    public static final double kD = 0.0;
     //Use Speed or distance tollerance constant, not both.
     public static final double kTurnTolleranceDeg = 5;
     public static final double kTurnTolleranceDegPerS = 0;
