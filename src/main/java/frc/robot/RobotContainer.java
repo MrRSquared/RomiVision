@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.TurnToAngle;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.RomiDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -27,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final RomiDrivetrain m_romiDrivetrain = new RomiDrivetrain();
+  private final Intake m_intake = new Intake();
 
   // Assumes a gamepad plugged into channnel 0
   private final Joystick m_controller = new Joystick(0);
@@ -64,7 +66,9 @@ public class RobotContainer {
      * m_romiDrivetrain.arcadeDrive(0, 0))) );
      */
 
-    
+    JoystickButton intakeButton = new JoystickButton(m_controller, 2);
+    // Binds an ExampleCommand to be scheduled when the trigger of the example joystick is pressed
+intakeButton.whenPressed(runIntake());
 
     m_turnToAngle = new TurnToAngle(90, m_romiDrivetrain);
     m_auto = new SequentialCommandGroup(
@@ -94,6 +98,10 @@ public class RobotContainer {
       .andThen(new InstantCommand(() -> m_romiDrivetrain.arcadeDrive(0, 0))
     );*/
     return m_auto;
+
+  }
+  public Command runIntake(){
+    return new InstantCommand(()->m_intake.runIntake(0.5));
 
   }
 }
